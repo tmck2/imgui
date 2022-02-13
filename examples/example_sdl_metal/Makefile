@@ -4,21 +4,23 @@
 #
 
 #CXX = g++
-#CXX = clang++
+CXX = clang++
 
 EXE = example_sdl_metal
 IMGUI_DIR = ../..
-SOURCES = main.mm
+SOURCES = main.mm Application.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_metal.mm
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 
 LIBS = -framework Metal -framework MetalKit -framework Cocoa -framework IOKit -framework CoreVideo -framework QuartzCore
-LIBS += `sdl2-config --libs`
+#LIBS += `sdl2-config --libs`
+LIBS += -F/Library/Frameworks -framework SDL2
 LIBS += -L/usr/local/lib
 
 CXXFLAGS = -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -I/usr/local/include
-CXXFLAGS += `sdl2-config --cflags`
+#CXXFLAGS += `sdl2-config --cflags`
+CXXFLAGS += -I/Library/Frameworks/SDL2.framework/Headers
 CXXFLAGS += -Wall -Wformat
 CFLAGS = $(CXXFLAGS)
 

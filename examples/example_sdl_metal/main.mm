@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <SDL.h>
 
+#include "Application.h"
+
 #import <Metal/Metal.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -127,6 +129,8 @@ int main(int, char**)
             {
                 static float f = 0.0f;
                 static int counter = 0;
+
+                MyApp::RenderUI();
 
                 ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 
